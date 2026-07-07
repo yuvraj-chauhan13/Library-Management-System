@@ -170,36 +170,6 @@ Authenticate User
         │
         ▼
 Update Files Automatically
-```
-
----
-
-# 📸 Screenshots
-
-You can add screenshots here.
-
-```
-screenshots/
-
-├── login.png
-├── student_menu.png
-├── librarian_menu.png
-├── admin_menu.png
-├── borrow_book.png
-└── return_book.png
-```
-
-Example
-
-```md
-## Login Screen
-
-![Login](screenshots/login.png)
-
-## Student Menu
-
-![Student](screenshots/student_menu.png)
-```
 
 ---
 
