@@ -7,3 +7,6 @@ Yuvraj|123|3
 keval|1234|1
 gaurav|1234|1
 keval|1232|1
+newuser|Password1@|1
+amitsir mankodi|Amit@2007|3
+keval darji|726C51766B979FE1|1

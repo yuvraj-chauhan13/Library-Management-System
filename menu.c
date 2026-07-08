@@ -172,8 +172,8 @@ void run_app(){
             if(!fgets(role_s, sizeof(role_s), stdin)) break;
             int role = atoi(role_s);
             if(role < 1 || role > 3) { printf("Invalid role.\n"); continue; }
-            if(register_user(username, password, role) == 0) printf("Registered successfully.\n");
-            else printf("Registration failed.\n");
+            UserStatus status = register_user(username, password, role);
+            printf("%s\n", user_status_message(status));
         } else if(ch == 3){
             printf("Exiting. Bye.\n");
             break;
