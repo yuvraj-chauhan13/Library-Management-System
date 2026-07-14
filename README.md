@@ -3,91 +3,132 @@
 <p align="center">
 
 ![C](https://img.shields.io/badge/C-Language-blue?style=for-the-badge&logo=c)
-![Makefile](https://img.shields.io/badge/Build-Makefile-orange?style=for-the-badge)
 ![CLI](https://img.shields.io/badge/Application-Terminal-black?style=for-the-badge)
+![Makefile](https://img.shields.io/badge/Build-Makefile-orange?style=for-the-badge)
 ![File Handling](https://img.shields.io/badge/File%20Handling-Persistent-success?style=for-the-badge)
+![Authentication](https://img.shields.io/badge/Security-Password%20Hashing-red?style=for-the-badge)
 
 </p>
 
-A modular **Library Management System** built in **C** that demonstrates file handling, modular programming, authentication, and role-based access control. The system manages books, users, loans, fines, and activity logs while storing all data persistently in text files.
+A **terminal-based Library Management System** developed in **C** using **modular programming**, **file handling**, and **role-based authentication**.
+
+The application manages **books, users, loans, fines, and activity logs** while storing all data persistently in text files. It demonstrates practical implementation of data structures, file handling, authentication, and modular software design.
 
 ---
 
 # ✨ Features
 
-### 👤 Authentication
+## 👤 Authentication
+
 - User Registration
 - Secure Login
 - Password Hashing
 - Password Validation
 - Role-Based Access Control
 
-### 📚 Book Management
+---
+
+## 📚 Book Management
+
 - Add & Remove Books
 - Search Books
-- List Available Books
+- View Complete Book Catalog
 - Automatic Book ID Generation
+- Book Availability Tracking
 - Book Popularity Tracking
 
-### 📖 Loan Management
+---
+
+## 📖 Loan Management
+
 - Borrow Books
 - Return Books
+- Automatic Loan ID Generation
 - Due Date Management
-- Automatic Fine Calculation
+- Fine Calculation
 - Personal Loan History
 - Complete Loan Records
 
-### 📊 Reports
+---
+
+## 📊 Reports & Analytics
+
 - Library Statistics
 - Top Borrowed Books
 - Overdue Books Report
 
-### 📝 Activity Logs
-- Registration Logs
-- Login & Failed Login Logs
-- Borrow / Return Logs
-- Book Addition & Removal Logs
+---
+
+## 📝 Activity Logging
+
+Every important action is automatically recorded.
+
+- User Registration
+- Login / Failed Login
+- Borrow Book
+- Return Book
+- Add Book
+- Remove Book
 
 ---
 
 # 👥 User Roles
 
-### 🎓 Student
-- Search Books
-- Borrow Books
-- Return Books
-- View Personal Loans
-
-### 📚 Librarian
-- Add Books
-- Remove Books
-- View Book Catalog
-
-### 👨‍💼 Administrator
-- View Users
-- View Loans
-- View Activity Logs
-- View Library Statistics
-- View Top Borrowed Books
-- View Overdue Books Report
+| Student | Librarian | Administrator |
+|:--------:|:----------:|:-------------:|
+| Search Books | Add Books | View Users |
+| Borrow Books | Remove Books | View Loans |
+| Return Books | View Book Catalog | View Logs |
+| View Personal Loans | | Library Statistics |
+| | | Top Borrowed Books |
+| | | Overdue Report |
 
 ---
 
-# 🗂 Project Structure
+# 📷 Application Screenshots
+
+> *(Add screenshots here)*
+
+### Login Screen
+
+![Login](screenshots/login.png)
+
+### Student Menu
+
+![Student](screenshots/student-menu.png)
+
+### Librarian Menu
+
+![Librarian](screenshots/librarian-menu.png)
+
+### Administrator Menu
+
+![Admin](screenshots/admin-menu.png)
+
+### Library Statistics
+
+![Statistics](screenshots/statistics.png)
+
+### Activity Logs
+
+![Logs](screenshots/logs.png)
+
+---
+
+# 📁 Project Structure
 
 ```text
-Library-Management-System/
+Library-Management-System
 │
+├── books.c / books.h
+├── users.c / users.h
+├── loans.c / loans.h
+├── logs.c / logs.h
+├── statistics.c / statistics.h
+├── security.c / security.h
+├── storage.c / storage.h
+├── menu.c / menu.h
 ├── main.c
-├── menu.c
-├── users.c
-├── books.c
-├── loans.c
-├── logs.c
-├── statistics.c
-├── security.c
-│
-├── *.h
 ├── Makefile
 │
 ├── data/
@@ -96,6 +137,7 @@ Library-Management-System/
 │   ├── loans.txt
 │   └── logs.txt
 │
+├── screenshots/
 ├── README.md
 └── .gitignore
 ```
@@ -108,12 +150,19 @@ Library-Management-System/
 - Modular Programming
 - File Handling
 - Dynamic Memory Allocation
+- Password Hashing
 - Makefile
 - Command-Line Interface (CLI)
 
 ---
 
 # 🚀 Build & Run
+
+### Clone Repository
+
+```bash
+git clone https://github.com/yuvraj-chauhan13/Library-Management-System.git
+```
 
 ### Compile
 
@@ -129,36 +178,13 @@ make
 
 ---
 
-# 📈 Sample Workflow
+# 💾 Data Storage
 
-```text
-Start
-   │
-   ▼
-Login / Register
-   │
-   ▼
-Authenticate User
-   │
-   ▼
-Student / Librarian / Admin
-   │
-   ▼
-Perform Operations
-   │
-   ▼
-Update Files Automatically
-```
+The application stores all information using plain text files.
 
----
-
-# 💾 Persistent Storage
-
-The application stores all data using plain text files.
-
-| File | Purpose |
-|------|---------|
-| `users.txt` | User Accounts |
+| File | Description |
+|------|-------------|
+| `users.txt` | Registered Users |
 | `books.txt` | Book Records |
 | `loans.txt` | Loan Records |
 | `logs.txt` | Activity Logs |
@@ -167,18 +193,17 @@ No external database is required.
 
 ---
 
-# 🎯 Learning Outcomes
+# 📚 Key Concepts Demonstrated
 
-This project demonstrates practical experience with:
-
-- Modular Software Design
-- File Handling in C
-- Structures & Dynamic Memory
-- Authentication Systems
+- Modular Programming
+- File Handling
+- Authentication
 - Password Hashing
 - Role-Based Access Control
+- Dynamic Memory Management
 - Data Persistence
-- Makefile-Based Build Systems
+- Software Design
+- Makefile Build System
 
 ---
 
@@ -186,8 +211,8 @@ This project demonstrates practical experience with:
 
 - Book Reservation System
 - Search by Author / ISBN
-- SQLite / MySQL Integration
 - Email Notifications
+- SQLite / MySQL Integration
 - Graphical User Interface (GUI)
 
 ---
@@ -196,9 +221,9 @@ This project demonstrates practical experience with:
 
 **Yuvraj Chauhan**
 
-- GitHub: **https://github.com/yuvraj-chauhan13**
-- LinkedIn: *(Add your LinkedIn profile here)*
+- GitHub: https://github.com/yuvraj-chauhan13
+- LinkedIn: https://linkedin.com/in/yuvrajchauhan04
 
 ---
 
-If you found this project useful, consider giving it a ⭐ on GitHub.
+⭐ If you found this project useful, consider giving it a star!
