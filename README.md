@@ -225,5 +225,3 @@ No external database is required.
 - LinkedIn: https://linkedin.com/in/yuvrajchauhan04
 
 ---
-
-⭐ If you found this project useful, consider giving it a star!
