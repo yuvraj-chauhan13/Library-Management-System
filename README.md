@@ -87,8 +87,6 @@ Every important action is automatically recorded.
 
 # 📷 Application Screenshots
 
-> *(Add screenshots here)*
-
 ### Login Screen
 
 ![Login](assets/login.png)
