@@ -1,2 +1,22 @@
-1001|csp|amit sir|10|8|0
-1002|csp 111|mankodi|10|10|0
+1001|The C Programming Language|Brian W. Kernighan & Dennis M. Ritchie|10|8|5
+1002|Introduction to Algorithms|Thomas H. Cormen|15|14|5
+1003|Operating System Concepts|Abraham Silberschatz|12|12|1
+1004|Database System Concepts|Abraham Silberschatz|10|10|1
+1005|Computer Networks|Andrew S. Tanenbaum|8|7|2
+1006|Clean Code|Robert C. Martin|15|14|3
+1007|Engineering Mathematics|B. S. Grewal|20|19|4
+1008|Higher Engineering Mathematics|Erwin Kreyszig|15|15|1
+1009|Linear Algebra and Its Applications|Gilbert Strang|12|12|1
+1010|Concepts of Physics Vol. 1|H. C. Verma|20|19|3
+1011|Concepts of Physics Vol. 2|H. C. Verma|20|20|1
+1012|Fundamentals of Physics|Halliday, Resnick & Walker|15|15|1
+1013|Organic Chemistry|Morrison & Boyd|12|12|0
+1014|Physical Chemistry|P. W. Atkins|10|10|0
+1015|Digital Electronics|Morris Mano|15|14|2
+1016|Signals and Systems|Alan V. Oppenheim|12|12|1
+1017|The Alchemist|Paulo Coelho|18|17|3
+1018|1984|George Orwell|15|15|1
+1019|To Kill a Mockingbird|Harper Lee|12|12|1
+1020|Rich Dad Poor Dad|Robert Kiyosaki|20|19|4
+1021|Atomic Habits|James Clear|25|24|6
+1022|The Psychology of Money|Morgan Housel|20|20|2

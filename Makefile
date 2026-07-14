@@ -6,6 +6,9 @@ SRC = main.c \
       storage.c \
       users.c \
       books.c \
+      loans.c \
+      statistics.c \
+      logs.c \
       security.c
 
 OUT = library

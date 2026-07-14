@@ -1,122 +1,104 @@
-# 📚 Library Management System
+# 📚 Advanced Library Management System
 
 <p align="center">
 
 ![C](https://img.shields.io/badge/C-Language-blue?style=for-the-badge&logo=c)
-![File Handling](https://img.shields.io/badge/File%20Handling-Persistent-success?style=for-the-badge)
 ![Makefile](https://img.shields.io/badge/Build-Makefile-orange?style=for-the-badge)
 ![CLI](https://img.shields.io/badge/Application-Terminal-black?style=for-the-badge)
-![Course Project](https://img.shields.io/badge/CSP-Course%20Project-brightgreen?style=for-the-badge)
+![File Handling](https://img.shields.io/badge/File%20Handling-Persistent-success?style=for-the-badge)
 
 </p>
 
-A **terminal-based Library Management System** developed in **C** using **modular programming**, **file handling**, and a **role-based authentication system**. The application provides efficient management of books, users, loans, and borrowing activities while maintaining persistent data using text files.
+A modular **Library Management System** built in **C** that demonstrates file handling, modular programming, authentication, and role-based access control. The system manages books, users, loans, fines, and activity logs while storing all data persistently in text files.
 
 ---
 
 # ✨ Features
 
-### 👤 User Authentication
-- Secure login system
-- User registration
-- Role-based access control
+### 👤 Authentication
+- User Registration
+- Secure Login
+- Password Hashing
+- Password Validation
+- Role-Based Access Control
 
-### 👥 User Roles
+### 📚 Book Management
+- Add & Remove Books
+- Search Books
+- List Available Books
+- Automatic Book ID Generation
+- Book Popularity Tracking
 
-- **Student**
-  - Search books
-  - Borrow books
-  - Return books
-  - View borrowed books
+### 📖 Loan Management
+- Borrow Books
+- Return Books
+- Due Date Management
+- Automatic Fine Calculation
+- Personal Loan History
+- Complete Loan Records
 
-- **Librarian**
-  - Add books
-  - Remove books
-  - View complete book catalog
+### 📊 Reports
+- Library Statistics
+- Top Borrowed Books
+- Overdue Books Report
 
-- **Administrator**
-  - View all registered users
-  - View loan history
-  - Monitor system records
-
----
-
-# 📖 Book Management
-
-- Add new books
-- Remove existing books
-- Search books by keyword
-- List all available books
-- Track available copies
-- Automatically generate Book IDs
-
----
-
-# 📚 Borrow & Return System
-
-- Borrow books
-- Return books
-- Automatic availability update
-- Loan record generation
-- Due date generation
-- Late fine calculation
-- Loan history management
+### 📝 Activity Logs
+- Registration Logs
+- Login & Failed Login Logs
+- Borrow / Return Logs
+- Book Addition & Removal Logs
 
 ---
 
-# 💾 Persistent Storage
+# 👥 User Roles
 
-The system stores all information permanently using text files.
+### 🎓 Student
+- Search Books
+- Borrow Books
+- Return Books
+- View Personal Loans
 
-```
-data/
-│
-├── books.txt
-├── users.txt
-└── loans.txt
-```
+### 📚 Librarian
+- Add Books
+- Remove Books
+- View Book Catalog
 
-No external database is required.
+### 👨‍💼 Administrator
+- View Users
+- View Loans
+- View Activity Logs
+- View Library Statistics
+- View Top Borrowed Books
+- View Overdue Books Report
 
 ---
 
-# 🏗️ Project Structure
+# 🗂 Project Structure
 
-```
+```text
 Library-Management-System/
 │
-├── books.c
-├── books.h
-├── users.c
-├── users.h
-├── storage.c
-├── storage.h
-├── menu.c
-├── menu.h
 ├── main.c
+├── menu.c
+├── users.c
+├── books.c
+├── loans.c
+├── logs.c
+├── statistics.c
+├── security.c
+│
+├── *.h
 ├── Makefile
 │
 ├── data/
-│   ├── books.txt
 │   ├── users.txt
-│   └── loans.txt
+│   ├── books.txt
+│   ├── loans.txt
+│   └── logs.txt
 │
 ├── README.md
 └── .gitignore
 ```
-
----
-
-# 🧩 Modules
-
-| Module | Description |
-|---------|-------------|
-| **books.c** | Book searching, adding, removing, borrowing and returning |
-| **users.c** | User registration and authentication |
-| **storage.c** | File handling and persistent storage |
-| **menu.c** | Interactive terminal menus |
-| **main.c** | Application entry point |
-| **Makefile** | Project compilation |
 
 ---
 
@@ -127,19 +109,19 @@ Library-Management-System/
 - File Handling
 - Dynamic Memory Allocation
 - Makefile
-- Command Line Interface (CLI)
+- Command-Line Interface (CLI)
 
 ---
 
 # 🚀 Build & Run
 
-## Compile
+### Compile
 
 ```bash
 make
 ```
 
-## Execute
+### Run
 
 ```bash
 ./library
@@ -147,76 +129,66 @@ make
 
 ---
 
-# 📋 Application Flow
+# 📈 Sample Workflow
 
-```
-Start Application
-        │
-        ▼
- Login / Register
-        │
-        ▼
+```text
+Start
+   │
+   ▼
+Login / Register
+   │
+   ▼
 Authenticate User
-        │
-        ▼
- ┌───────────────┐
- │ Student       │
- │ Librarian     │
- │ Administrator │
- └───────────────┘
-        │
-        ▼
- Perform Operations
-        │
-        ▼
+   │
+   ▼
+Student / Librarian / Admin
+   │
+   ▼
+Perform Operations
+   │
+   ▼
 Update Files Automatically
+```
 
 ---
 
-# 🔑 Key Features
+# 💾 Persistent Storage
 
-- Modular source code
-- Role-based authentication
-- Persistent file storage
-- Borrow and return tracking
-- Automatic Book ID generation
-- Automatic Loan ID generation
-- Due date management
-- Fine calculation
-- Dynamic file updates
-- Command-line interface
-- Makefile support
+The application stores all data using plain text files.
 
----
+| File | Purpose |
+|------|---------|
+| `users.txt` | User Accounts |
+| `books.txt` | Book Records |
+| `loans.txt` | Loan Records |
+| `logs.txt` | Activity Logs |
 
-# 📈 Future Improvements
-
-- Password hashing
-- Search by Author/ISBN
-- Book reservation system
-- Transaction logs
-- CSV export
-- SQLite/MySQL integration
-- Colored terminal interface
-- Unit testing
-- GUI version
+No external database is required.
 
 ---
 
 # 🎯 Learning Outcomes
 
-This project demonstrates practical implementation of
+This project demonstrates practical experience with:
 
-- Modular Programming
-- File Handling
-- Dynamic Memory Management
-- Structures
-- String Manipulation
-- Authentication System
+- Modular Software Design
+- File Handling in C
+- Structures & Dynamic Memory
+- Authentication Systems
+- Password Hashing
 - Role-Based Access Control
 - Data Persistence
-- Software Design
-- Makefile Build System
+- Makefile-Based Build Systems
+
+---
+
+# 🔮 Future Improvements
+
+- Book Reservation System
+- Search by Author / ISBN
+- SQLite / MySQL Integration
+- Email Notifications
+- Graphical User Interface (GUI)
 
 ---
 
@@ -224,10 +196,9 @@ This project demonstrates practical implementation of
 
 **Yuvraj Chauhan**
 
-- GitHub: https://github.com/yuvraj-chauhan13
+- GitHub: **https://github.com/yuvraj-chauhan13**
+- LinkedIn: *(Add your LinkedIn profile here)*
 
 ---
-
-# ⭐ Support
 
 If you found this project useful, consider giving it a ⭐ on GitHub.

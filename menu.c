@@ -1,16 +1,13 @@
 #include "menu.h"
 #include "users.h"
 #include "books.h"
+#include "loans.h"
+#include "logs.h"
+#include "statistics.h"
 #include "storage.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
-
-static void clear_stdin_line(){
-    int c;
-    while((c = getchar()) != '\n' && c != EOF) {}
-}
 
 static void show_start_menu(){
     printf("\n===== ADVANCED LIBRARY =====\n");
@@ -42,9 +39,13 @@ static void show_librarian_menu(){
 static void show_admin_menu(){
     printf("\n--- ADMIN MENU ---\n");
     printf("1) View Users\n");
-    printf("2) View Logs (loans)\n");
-    printf("3) List Books\n");
-    printf("4) Logout\n");
+    printf("2) View Loans\n");
+    printf("3) View Activity Logs\n");
+    printf("4) List Books\n");
+    printf("5) Library Statistics\n");
+    printf("6) Top Borrowed Books\n");
+    printf("7) Overdue Books Report\n");
+    printf("8) Logout\n");
     printf("Enter choice: ");
 }
 
@@ -65,7 +66,9 @@ void run_app(){
             int role = authenticate_user(username, password);
             if(role == 0){
                 printf("Invalid credentials.\n");
+                write_log("LOGIN_FAILED", username);
             } else if(role == 1){
+                write_log("LOGIN", username);
                 // student menu loop
                 int run = 1;
                 while(run){
@@ -84,23 +87,43 @@ void run_app(){
                         if(!fgets(input, sizeof(input), stdin)) break;
                         int bid = atoi(input);
                         int loanid = borrow_book_by_id(bid, username);
-                        if(loanid > 0) printf("Borrow successful. Loan id: %d\n", loanid);
+                        if(loanid > 0){
+                            printf("Borrow successful. Loan id: %d\n", loanid);
+                            char details[128];
+
+                            snprintf(details,
+                            sizeof(details),
+                            "User=%s | BookID=%d",
+                            username,
+                            bid);
+
+                            write_log("BORROW_BOOK", details);
+                        }
                         else if(loanid == -2) printf("Book not available. Try again later or reserve (not implemented in Phase1).\n");
                         else printf("Borrow failed.\n");
                     } else if(sc == 3){
                         printf("Enter loan id to return: ");
                         if(!fgets(input, sizeof(input), stdin)) break;
                         int lid = atoi(input);
-                        if(return_book_by_loan(lid) == 0) printf("Return recorded.\n");
+                        if(return_book_by_loan(lid) == 0){
+                            printf("Return recorded.\n");
+                            char details[128];
+
+                            snprintf(details,
+                                    sizeof(details),
+                                    "User=%s | LoanID=%d",
+                                    username,
+                                    lid);
+
+                            write_log("RETURN_BOOK", details);
+                        }
                         else printf("Return failed.\n");
                     } else if(sc == 4){
-                        // show loans for user
-                        char *s = read_file("data/loans.txt");
-                        if(!s) printf("No loans file.\n");
-                        else {
-                            printf("Loans file content (search your username):\n%s\n", s);
-                            free(s);
-                        }
+                        char *loans = view_user_loans(username);
+
+                        printf("\n%s", loans);
+
+                        free(loans);
                     } else if(sc == 5){
                         run = 0; printf("Logging out...\n");
                     } else {
@@ -108,6 +131,7 @@ void run_app(){
                     }
                 } // end student loop
             } else if(role == 2){
+                write_log("LOGIN", username);
                 int run = 1;
                 while(run){
                     show_librarian_menu();
@@ -119,12 +143,40 @@ void run_app(){
                         printf("Author: "); if(!fgets(author,sizeof(author),stdin)) break; author[strcspn(author,"\r\n")] = 0;
                         printf("Copies: "); if(!fgets(copies_s,sizeof(copies_s),stdin)) break;
                         int copies = atoi(copies_s);
-                        if(add_book(title, author, copies) == 0) printf("Book added.\n"); else printf("Add failed.\n");
+                        if(add_book(title, author, copies) == 0)
+                        {
+                            printf("Book added.\n");
+
+                            char details[256];
+
+                            snprintf(details,
+                                    sizeof(details),
+                                    "Title=%s | Author=%s",
+                                    title,
+                                    author);
+
+                            write_log("ADD_BOOK", details);
+                        }
+                        else
+                        {
+                            printf("Add failed.\n");
+                        }
                     } else if(sc == 2){
                         printf("Book id to remove: ");
                         if(!fgets(input,sizeof(input),stdin)) break;
                         int bid = atoi(input);
-                        if(remove_book(bid) == 0) printf("Removed.\n"); else printf("Remove failed.\n");
+                        if(remove_book(bid) == 0){
+                            printf("Removed.\n");
+                            char details[64];
+
+                            snprintf(details,
+                                    sizeof(details),
+                                    "BookID=%d",
+                                    bid);
+
+                            write_log("REMOVE_BOOK", details);
+                        }
+                        else printf("Remove failed.\n");
                     } else if(sc == 3){
                         char *b = list_books();
                         printf("Books:\n%s\n", b);
@@ -136,27 +188,70 @@ void run_app(){
                     }
                 }
             } else if(role == 3){
+                write_log("LOGIN", username);
                 int run = 1;
                 while(run){
                     show_admin_menu();
                     if(!fgets(input, sizeof(input), stdin)) { run = 0; break; }
                     int sc = atoi(input);
+
                     if(sc == 1){
                         char *u = list_users();
                         printf("Users:\n%s\n", u);
                         free(u);
-                    } else if(sc == 2){
-                        char *l = read_file("data/loans.txt");
-                        if(!l) printf("No loans.\n"); else { printf("Loans:\n%s\n", l); free(l); }
-                    } else if(sc == 3){
+                    }
+                    else if(sc == 2){
+                        char *l = list_loans();
+
+                        printf("\n%s", l);
+
+                        free(l);
+                    }
+                    else if(sc == 3){
+                        char *logs = list_logs();
+
+                        printf("\n%s", logs);
+
+                        free(logs);
+                    }
+                    else if(sc == 4){
                         char *b = list_books();
+
                         printf("Books:\n%s\n", b);
+
                         free(b);
-                    } else if(sc == 4){
-                        run = 0; printf("Admin logging out...\n");
-                    } else {
+                    }
+                    else if(sc == 5){
+                        char *stats = library_statistics();
+
+                        printf("%s", stats);
+
+                        free(stats);
+                    }
+                    else if(sc == 6){
+                        char *top = top_borrowed_books();
+
+                        printf("%s", top);
+
+                        free(top);
+                    }
+                    else if(sc == 7){
+                        char *report = overdue_books();
+
+                        printf("%s", report);
+
+                        free(report);
+                    }
+                    else if(sc == 8){
+                        run = 0;
+
+                        printf("Admin logging out...\n");
+                    }
+                    else{
                         printf("Invalid choice.\n");
                     }
+                                    
+
                 }
             }
         } else if(ch == 2){
@@ -174,6 +269,11 @@ void run_app(){
             if(role < 1 || role > 3) { printf("Invalid role.\n"); continue; }
             UserStatus status = register_user(username, password, role);
             printf("%s\n", user_status_message(status));
+
+            if (status == USER_SUCCESS)
+            {
+                write_log("REGISTER", username);
+            }
         } else if(ch == 3){
             printf("Exiting. Bye.\n");
             break;
