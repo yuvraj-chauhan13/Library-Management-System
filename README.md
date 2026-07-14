@@ -109,7 +109,7 @@ Every important action is automatically recorded.
 
 ### Activity Logs
 
-![Logs](assets/logs.png)
+![Logs](assets/top-borrowed-books.png)
 
 ---
 
