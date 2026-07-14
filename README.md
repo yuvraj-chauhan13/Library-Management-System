@@ -91,27 +91,27 @@ Every important action is automatically recorded.
 
 ### Login Screen
 
-![Login](screenshots/login.png)
+![Login](assets/login.png)
 
 ### Student Menu
 
-![Student](screenshots/student-menu.png)
+![Student](assets/student-menu.png)
 
 ### Librarian Menu
 
-![Librarian](screenshots/librarian-menu.png)
+![Librarian](assets/librarian-menu.png)
 
 ### Administrator Menu
 
-![Admin](screenshots/admin-menu.png)
+![Admin](assets/admin-menu.png)
 
 ### Library Statistics
 
-![Statistics](screenshots/statistics.png)
+![Statistics](assets/statistics.png)
 
 ### Activity Logs
 
-![Logs](screenshots/logs.png)
+![Logs](assets/logs.png)
 
 ---
 
