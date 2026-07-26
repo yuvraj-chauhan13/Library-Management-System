@@ -99,7 +99,7 @@ void run_app(){
 
                             write_log("BORROW_BOOK", details);
                         }
-                        else if(loanid == -2) printf("Book not available. Try again later or reserve (not implemented in Phase1).\n");
+                        else if(loanid == -2) printf("Book not available. Try again later.\n");
                         else printf("Borrow failed.\n");
                     } else if(sc == 3){
                         printf("Enter loan id to return: ");
